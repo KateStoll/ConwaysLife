@@ -25,11 +25,13 @@ function getNeighbors(x,y) {
     
 }
 
-const trueValues = neighbors.filter(Boolean).length;
-console.log(trueValues);
+/*const trueValues = neighbors.filter(Boolean).length;
+console.log(trueValues); */
 
-/* .filter(Boolean) creates a new array with only the true values
-   .length gives a number of the trues in the new array
-*/
+const trueValues = neighbors.filter(value => value === true);
+console.log(trueValues);
+console.log(trueValues.length); 
+
+
 
 console.log(result);
