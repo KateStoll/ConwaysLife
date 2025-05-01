@@ -1,24 +1,27 @@
 {
-  "name": "conways",
-  "version": "1.0.0",
-  "main": "conwaysfirst.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/KateStoll/ConwaysLife.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/KateStoll/ConwaysLife/issues"
-  },
-  "homepage": "https://github.com/KateStoll/ConwaysLife#readme",
-  "description": "",
-  "devDependencies": {
-    "@eslint/js": "^9.22.0",
-    "eslint": "^9.22.0",
-    "globals": "^16.0.0"
-  }
+    "name": "conways",
+    "version": "1.0.0",
+    "main": "conwaysfirst.js",
+    "scripts": {
+        "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+        "run": "NODE_OPTIONS=--experimental-vm-modules node run.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/KateStoll/ConwaysLife.git"
+    },
+    "type": "module",
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/KateStoll/ConwaysLife/issues"
+    },
+    "homepage": "https://github.com/KateStoll/ConwaysLife#readme",
+    "description": "",
+    "devDependencies": {
+        "@eslint/js": "^9.22.0",
+        "eslint": "^9.22.0",
+        "globals": "^16.0.0",
+        "jest": "^29.7.0"
+    }
 }
