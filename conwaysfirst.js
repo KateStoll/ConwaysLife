@@ -12,45 +12,39 @@ Each cell with two or three neighbors survives.
 For a space that is empty or unpopulated:
 Each cell with three neighbors becomes bring to life.
 
- * 
+ *
  */
-const grid = [
-    [true, false,false],
-    [false,false,false],
-    [false,false,false]
-];
 
-const current = grid[0][0];
-const neighbors = [];
+/* i need to fix the getNeighbors fucntion */
 
-for (let y = 0; y < 3; y++) {
-    for(let x = 0; x < 3; x++){
-       if(x === 0 && y === 1 ) {
-        neighbors.push(grid[y][x]);
-       } else if(x === 1 && y === 0) {
-        neighbors.push(grid[y][x]);
-       } else if ( x === 1 && y === 1) {
-        neighbors.push(grid[y][x]);
+export function getNeighbors(grid, currentY, currentX) {
+  const neighbors = [];
 
-       }
-       
-        
+  for (let y = currentY - 1; y <= currentY + 1; y++) {
+    for (let x = currentX - 1; x <= currentX + 1; x++) {
+      if (y === currentY && x === currentX) continue;
+      if (y >= 0 && y < grid.length && x >= 0 && x < grid[0].length) {
+        neighbors.push(grid[y][x]);
+      }
     }
+  }
+
+  return neighbors;
 }
 
-const aliveNeighbors = neighbors.filter(value => value);
-    
-
-
-console.log(aliveNeighbors.length);
-
-
-if(aliveNeighbors.length === 2 || aliveNeighbors.lenght === 3) {
-    console.log("survived!");
-} else if (!current && aliveNeighbors.length === 3){
-    console.log("Bring to Life");
-} else if(current && (aliveNeighbors.length === 0 || aliveNeighbors.length === 1)){
-    console.log("died of lonliness");
-} else {
-    console.log("Oops");
+export function getCellMessage(current, aliveNeighbors) {
+  if (current && (aliveNeighbors.length === 2 || aliveNeighbors.length === 3)) {
+    return "survived!";
+  } else if (!current && aliveNeighbors.length === 3) {
+    return "Bring to Life";
+  } else if (
+    current &&
+    (aliveNeighbors.length === 0 || aliveNeighbors.length === 1)
+  ) {
+    return "died of lonliness";
+  } else if (current && aliveNeighbors.length > 3) {
+    return "died of overpopulation";
+  } else {
+    return "Oops";
+  }
 }
