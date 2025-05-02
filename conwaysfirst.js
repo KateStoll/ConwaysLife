@@ -2,12 +2,9 @@
  * For a space that is populated:
 Each cell with one or no neighbors dies, as if by solitude.
 
-
 Each cell with four or more neighbors dies, as if by overpopulation.
 
-
 Each cell with two or three neighbors survives.
-
 
 For a space that is empty or unpopulated:
 Each cell with three neighbors becomes bring to life.
@@ -17,7 +14,7 @@ Each cell with three neighbors becomes bring to life.
 
 /* i need to fix the getNeighbors fucntion */
 
-export function getNeighbors(grid, currentY, currentX) {
+export function getNeighbors (grid, currentY, currentX) {
   const neighbors = [];
 
   for (let y = currentY - 1; y <= currentY + 1; y++) {
@@ -32,19 +29,19 @@ export function getNeighbors(grid, currentY, currentX) {
   return neighbors;
 }
 
-export function getCellMessage(current, aliveNeighbors) {
+export function getCellMessage (current, aliveNeighbors) {
   if (current && (aliveNeighbors.length === 2 || aliveNeighbors.length === 3)) {
-    return "survived!";
+    return 'survived!';
   } else if (!current && aliveNeighbors.length === 3) {
-    return "Bring to Life";
+    return 'Bring to Life';
   } else if (
     current &&
     (aliveNeighbors.length === 0 || aliveNeighbors.length === 1)
   ) {
-    return "died of lonliness";
+    return 'died of lonliness';
   } else if (current && aliveNeighbors.length > 3) {
-    return "died of overpopulation";
+    return 'died of overpopulation';
   } else {
-    return "Oops";
+    return 'Oops';
   }
 }

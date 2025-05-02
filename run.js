@@ -1,4 +1,4 @@
-import { getNeighbors, getCellMessage } from "./conwaysfirst.js";
+import { getNeighbors, getCellMessage } from './conwaysfirst.js';
 
 const initGrid = [
   [false, true, false],

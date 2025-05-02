@@ -4,7 +4,10 @@
     "main": "conwaysfirst.js",
     "scripts": {
         "test": "NODE_OPTIONS=--experimental-vm-modules jest",
-        "run": "NODE_OPTIONS=--experimental-vm-modules node run.js"
+        "run": "NODE_OPTIONS=--experimental-vm-modules node run.js",
+        "lint": "eslint *.js",
+        "lint-fix": "eslint --fix *.js",
+        "eslint": "eslint --"
     },
     "repository": {
         "type": "git",
@@ -19,9 +22,10 @@
     "homepage": "https://github.com/KateStoll/ConwaysLife#readme",
     "description": "",
     "devDependencies": {
-        "@eslint/js": "^9.22.0",
-        "eslint": "^9.22.0",
+        "@eslint/js": "^9.26.0",
+        "eslint": "^9.26.0",
         "globals": "^16.0.0",
-        "jest": "^29.7.0"
+        "jest": "^29.7.0",
+        "neostandard": "^0.12.1"
     }
 }
