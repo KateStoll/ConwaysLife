@@ -14,7 +14,7 @@ Each cell with three neighbors becomes bring to life.
 
 /* i need to fix the getNeighbors fucntion */
 
-export function getNeighbors (grid, currentY, currentX) {
+export function getNeighbors(grid, currentY, currentX) {
   const neighbors = [];
 
   for (let y = currentY - 1; y <= currentY + 1; y++) {
@@ -29,19 +29,22 @@ export function getNeighbors (grid, currentY, currentX) {
   return neighbors;
 }
 
-export function getCellMessage (current, aliveNeighbors) {
-  if (current && (aliveNeighbors.length === 2 || aliveNeighbors.length === 3)) {
-    return 'survived!';
-  } else if (!current && aliveNeighbors.length === 3) {
-    return 'Bring to Life';
+export function getCellMessage(currentIsAlive, aliveNeighbors) {
+  if (
+    currentIsAlive &&
+    (aliveNeighbors.length === 2 || aliveNeighbors.length === 3)
+  ) {
+    return "survived!";
+  } else if (!currentIsAlive && aliveNeighbors.length === 3) {
+    return "Bring to Life";
   } else if (
-    current &&
+    currentIsAlive &&
     (aliveNeighbors.length === 0 || aliveNeighbors.length === 1)
   ) {
-    return 'died of lonliness';
-  } else if (current && aliveNeighbors.length > 3) {
-    return 'died of overpopulation';
+    return "died of lonliness";
+  } else if (currentIsAlive && aliveNeighbors.length > 3) {
+    return "died of overpopulation";
   } else {
-    return 'Oops';
+    return "Oops";
   }
 }
