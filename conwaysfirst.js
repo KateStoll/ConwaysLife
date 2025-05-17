@@ -50,3 +50,13 @@ export function getCellMessage(currentIsAlive, aliveNeighbors) {
     return "Oops";
   }
 }
+
+export function checkSquare(grid, initY, initX) {
+  const neighbors = getNeighbors(grid, initY, initX);
+  const current = grid[initY][initX];
+
+  const aliveNeighbors = neighbors.filter((value) => value);
+
+  const output = getCellMessage(current, aliveNeighbors);
+  console.log(output);
+}
