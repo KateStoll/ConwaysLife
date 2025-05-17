@@ -6,20 +6,8 @@ const initGrid = [
   [false, false, false],
 ];
 
-console.log(checkSquare(initGrid, 0, 0));
-
-console.log(checkSquare(initGrid, 0, 1));
-
-console.log(checkSquare(initGrid, 0, 2));
-
-console.log(checkSquare(initGrid, 1, 0));
-
-console.log(checkSquare(initGrid, 1, 1));
-
-console.log(checkSquare(initGrid, 1, 2));
-
-console.log(checkSquare(initGrid, 2, 0));
-
-console.log(checkSquare(initGrid, 2, 1));
-
-console.log(checkSquare(initGrid, 2, 2));
+for (let y = 0; y < initGrid.length; y++) {
+  for (let x = 0; x < initGrid.length; x++) {
+    console.log(checkSquare(initGrid, y, x));
+  }
+}
