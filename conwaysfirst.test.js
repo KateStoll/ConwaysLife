@@ -1,4 +1,4 @@
-import { getNeighbors, getCellMessage } from "./conwaysfirst";
+import { getNeighbors, getCellMessage, checkSquare } from "./conwaysfirst";
 
 describe("getNeighbors", () => {
   test("gets all neighbors of center cell", () => {
@@ -70,19 +70,17 @@ describe("getCellMessage", () => {
   });
 });
 
-/*
-test("Dead cell comes to life with exactly 3 neighbors", () => {
+describe("checkSquare", () => {
+  const grid = [
+    [false, true, false],
+    [true, true, true],
+    [false, false, false],
+  ];
 
+  const initX = 1;
+  const initY = 1;
+
+  test("Outputs 'survived!' if Living cell survives with 2 or 3 neighbors", () => {
+    expect(checkSquare(grid, initY, initX)).toBe("survived!");
+  });
 });
-
-test("Living cell dies with fewer than 2 neighbors (loneliness)", () => {
-
-});
-
-test("Living cell dies with more than 3 neighbors (overpopulation)", () => {
-
-});
-
-test("Dead cell stays dead unless it has exactly 3 neighbors", () => {
-
-}); */

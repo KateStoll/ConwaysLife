@@ -58,5 +58,5 @@ export function checkSquare(grid, initY, initX) {
   const aliveNeighbors = neighbors.filter((value) => value);
 
   const output = getCellMessage(current, aliveNeighbors);
-  console.log(output);
+  return output;
 }
