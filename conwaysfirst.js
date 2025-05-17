@@ -7,7 +7,7 @@ Each cell with four or more neighbors dies, as if by overpopulation.
 Each cell with two or three neighbors survives.
 
 For a space that is empty or unpopulated:
-Each cell with three neighbors becomes bring to life.
+Each cell with three alive neighbors becomes bring to life.
 
  *
  */
@@ -44,6 +44,8 @@ export function getCellMessage(currentIsAlive, aliveNeighbors) {
     return "died of lonliness";
   } else if (currentIsAlive && aliveNeighbors.length > 3) {
     return "died of overpopulation";
+  } else if (!currentIsAlive && aliveNeighbors.length < 3) {
+    return "Stays Dead";
   } else {
     return "Oops";
   }
