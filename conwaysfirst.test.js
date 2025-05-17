@@ -66,7 +66,7 @@ describe("getCellMessage", () => {
   test("Dead cell stays dead unless it has exactly 3 neighbors", () => {
     const current = false;
     const aliveNeighbors = [true, true]; // Only 2 alive neighbors
-    expect(getCellMessage(current, aliveNeighbors)).toBe("Oops");
+    expect(getCellMessage(current, aliveNeighbors)).toBe("Stays Dead");
   });
 });
 
