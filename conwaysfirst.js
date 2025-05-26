@@ -1,19 +1,3 @@
-/**
- * For a space that is populated:
-Each cell with one or no neighbors dies, as if by solitude.
-
-Each cell with four or more neighbors dies, as if by overpopulation.
-
-Each cell with two or three neighbors survives.
-
-For a space that is empty or unpopulated:
-Each cell with three alive neighbors becomes bring to life.
-
- *
- */
-
-/* i need to fix the getNeighbors fucntion */
-
 export function getNeighbors(grid, currentY, currentX) {
   const neighbors = [];
 
@@ -59,4 +43,17 @@ export function checkSquare(grid, initY, initX) {
 
   const output = getCellMessage(current, aliveNeighbors);
   return output;
+}
+
+export function checkAllSquares(initGrid) {
+  const Response = [];
+
+  for (let y = 0; y < initGrid.length; y++) {
+    for (let x = 0; x < initGrid[0].length; x++) {
+      const result = checkSquare(initGrid, y, x);
+      Response.push(result);
+    }
+  }
+
+  return Response;
 }

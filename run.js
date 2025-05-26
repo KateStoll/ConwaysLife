@@ -1,4 +1,9 @@
-import { getNeighbors, getCellMessage, checkSquare } from "./conwaysfirst.js";
+import {
+  getNeighbors,
+  getCellMessage,
+  checkSquare,
+  checkAllSquares,
+} from "./conwaysfirst.js";
 
 const initGrid = [
   [false, true, false],
@@ -6,8 +11,5 @@ const initGrid = [
   [false, false, false],
 ];
 
-for (let y = 0; y < initGrid.length; y++) {
-  for (let x = 0; x < initGrid.length; x++) {
-    console.log(checkSquare(initGrid, y, x));
-  }
-}
+const result = checkAllSquares(initGrid);
+console.log(result);
