@@ -7,14 +7,14 @@ Each cell with four or more neighbors dies, as if by overpopulation.
 Each cell with two or three neighbors survives.
 
 For a space that is empty or unpopulated:
-Each cell with three neighbors becomes bring to life.
+Each cell with three alive neighbors becomes bring to life.
 
  *
  */
 
 /* i need to fix the getNeighbors fucntion */
 
-export function getNeighbors (grid, currentY, currentX) {
+export function getNeighbors(grid, currentY, currentX) {
   const neighbors = [];
 
   for (let y = currentY - 1; y <= currentY + 1; y++) {
@@ -29,19 +29,34 @@ export function getNeighbors (grid, currentY, currentX) {
   return neighbors;
 }
 
-export function getCellMessage (current, aliveNeighbors) {
-  if (current && (aliveNeighbors.length === 2 || aliveNeighbors.length === 3)) {
-    return 'survived!';
-  } else if (!current && aliveNeighbors.length === 3) {
-    return 'Bring to Life';
+export function getCellMessage(currentIsAlive, aliveNeighbors) {
+  if (
+    currentIsAlive &&
+    (aliveNeighbors.length === 2 || aliveNeighbors.length === 3)
+  ) {
+    return "survived!";
+  } else if (!currentIsAlive && aliveNeighbors.length === 3) {
+    return "Bring to Life";
   } else if (
-    current &&
+    currentIsAlive &&
     (aliveNeighbors.length === 0 || aliveNeighbors.length === 1)
   ) {
-    return 'died of lonliness';
-  } else if (current && aliveNeighbors.length > 3) {
-    return 'died of overpopulation';
+    return "died of lonliness";
+  } else if (currentIsAlive && aliveNeighbors.length > 3) {
+    return "died of overpopulation";
+  } else if (!currentIsAlive && aliveNeighbors.length < 3) {
+    return "Stays Dead";
   } else {
-    return 'Oops';
+    return "Oops";
   }
+}
+
+export function checkSquare(grid, initY, initX) {
+  const neighbors = getNeighbors(grid, initY, initX);
+  const current = grid[initY][initX];
+
+  const aliveNeighbors = neighbors.filter((value) => value);
+
+  const output = getCellMessage(current, aliveNeighbors);
+  return output;
 }
