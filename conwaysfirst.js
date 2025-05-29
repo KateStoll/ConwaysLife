@@ -57,3 +57,47 @@ export function checkAllSquares(initGrid) {
 
   return Response;
 }
+
+export function getNextGeneration(currentGrid) {
+  const updatedGrid = [];
+
+  // Loop through each row
+  for (let y = 0; y < currentGrid.length; y++) {
+    const newRow = [];
+
+    // Loop through each column in the current row
+    for (let x = 0; x < currentGrid[0].length; x++) {
+      const isCurrentlyAlive = currentGrid[y][x];
+
+      // Get all neighboring cells
+      const neighbors = getNeighbors(currentGrid, y, x);
+
+      // Count how many neighbors are alive using a nested loop
+      let aliveCount = 0;
+      for (let i = 0; i < neighbors.length; i++) {
+        if (neighbors[i] === true) {
+          aliveCount += 1;
+        }
+      }
+
+      let willBeAlive = false;
+
+      // Apply the Game of Life rules using nested conditionals
+      if (isCurrentlyAlive) {
+        if (aliveCount === 2 || aliveCount === 3) {
+          willBeAlive = true; // stays alive
+        }
+      } else {
+        if (aliveCount === 3) {
+          willBeAlive = true; // comes to life
+        }
+      }
+
+      newRow.push(willBeAlive);
+    }
+
+    updatedGrid.push(newRow);
+  }
+
+  return updatedGrid;
+}
