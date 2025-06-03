@@ -98,6 +98,10 @@ describe("getNextGeneration", () => {
       [false, false, false],
     ];
 
-    expect(() => getNextGeneration(initGrid)).not.toThrow();
+    expect(getNextGeneration(initGrid)).toBe([
+      [true, true, true],
+      [true, true, true],
+      [false, true, false],
+    ]);
   });
 });
