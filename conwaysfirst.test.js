@@ -98,7 +98,7 @@ describe("getNextGeneration", () => {
       [false, false, false],
     ];
 
-    expect(getNextGeneration(initGrid)).toBe([
+    expect(getNextGeneration(initGrid)).toEqual([
       [true, true, true],
       [true, true, true],
       [false, true, false],
