@@ -1,4 +1,3 @@
-
 export function getNeighbors(grid, currentY, currentX) {
   const neighbors = [];
 
@@ -54,7 +53,6 @@ export function checkAllSquares(initGrid) {
       const result = checkSquare(initGrid, y, x);
       Response.push(result);
     }
-
   }
 
   return Response;
@@ -102,14 +100,4 @@ export function getNextGeneration(currentGrid) {
   }
 
   return updatedGrid;
-}
-
-export function checkSquare(grid, initY, initX) {
-  const neighbors = getNeighbors(grid, initY, initX);
-  const current = grid[initY][initX];
-
-  const aliveNeighbors = neighbors.filter((value) => value);
-
-  const output = getCellMessage(current, aliveNeighbors);
-  return output;
 }
