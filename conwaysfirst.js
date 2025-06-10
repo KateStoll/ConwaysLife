@@ -1,19 +1,3 @@
-/**
- * For a space that is populated:
-Each cell with one or no neighbors dies, as if by solitude.
-
-Each cell with four or more neighbors dies, as if by overpopulation.
-
-Each cell with two or three neighbors survives.
-
-For a space that is empty or unpopulated:
-Each cell with three alive neighbors becomes bring to life.
-
- *
- */
-
-/* i need to fix the getNeighbors fucntion */
-
 export function getNeighbors(grid, currentY, currentX) {
   const neighbors = [];
 
@@ -59,4 +43,61 @@ export function checkSquare(grid, initY, initX) {
 
   const output = getCellMessage(current, aliveNeighbors);
   return output;
+}
+
+export function checkAllSquares(initGrid) {
+  const response = [];
+
+  for (let y = 0; y < initGrid.length; y++) {
+    for (let x = 0; x < initGrid[0].length; x++) {
+      const result = checkSquare(initGrid, y, x);
+      response.push(result);
+    }
+  }
+
+  return response;
+}
+
+export function getNextGeneration(currentGrid) {
+  const updatedGrid = [];
+
+  // Loop through each row
+  for (let y = 0; y < currentGrid.length; y++) {
+    const newRow = [];
+
+    // Loop through each column in the current row
+    for (let x = 0; x < currentGrid[0].length; x++) {
+      const isCurrentlyAlive = currentGrid[y][x];
+
+      // Get all neighboring cells
+      const neighbors = getNeighbors(currentGrid, y, x);
+
+      // Count how many neighbors are alive using a nested loop
+      let aliveCount = 0;
+      for (let i = 0; i < neighbors.length; i++) {
+        if (neighbors[i] === true) {
+          aliveCount += 1;
+        }
+      }
+
+      let willBeAlive = false;
+
+      // Apply the Game of Life rules using nested conditionals
+      if (isCurrentlyAlive) {
+        if (aliveCount === 2 || aliveCount === 3) {
+          willBeAlive = true; // stays alive
+        }
+      } else {
+        if (aliveCount === 3) {
+          willBeAlive = true; // comes to life
+        }
+      }
+
+      newRow.push(willBeAlive);
+    }
+
+    updatedGrid.push(newRow);
+  }
+
+  return updatedGrid;
 }

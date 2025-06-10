@@ -1,4 +1,9 @@
-import { getNeighbors, getCellMessage, checkSquare } from "./conwaysfirst";
+import {
+  getNeighbors,
+  getCellMessage,
+  checkSquare,
+  getNextGeneration,
+} from "./conwaysfirst";
 
 describe("getNeighbors", () => {
   test("gets all neighbors of center cell", () => {
@@ -82,5 +87,21 @@ describe("checkSquare", () => {
 
   test("Outputs 'survived!' if Living cell survives with 2 or 3 neighbors", () => {
     expect(checkSquare(grid, initY, initX)).toBe("survived!");
+  });
+});
+
+describe("getNextGeneration", () => {
+  test("Smoke test: runs without throwing an error", () => {
+    const initGrid = [
+      [false, true, false],
+      [true, true, true],
+      [false, false, false],
+    ];
+
+    expect(getNextGeneration(initGrid)).toEqual([
+      [true, true, true],
+      [true, true, true],
+      [false, true, false],
+    ]);
   });
 });
