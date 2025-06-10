@@ -46,16 +46,16 @@ export function checkSquare(grid, initY, initX) {
 }
 
 export function checkAllSquares(initGrid) {
-  const Response = [];
+  const response = [];
 
   for (let y = 0; y < initGrid.length; y++) {
     for (let x = 0; x < initGrid[0].length; x++) {
       const result = checkSquare(initGrid, y, x);
-      Response.push(result);
+      response.push(result);
     }
   }
 
-  return Response;
+  return response;
 }
 
 export function getNextGeneration(currentGrid) {
