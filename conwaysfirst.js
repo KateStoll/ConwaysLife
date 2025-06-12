@@ -82,7 +82,7 @@ export function getNextGeneration(currentGrid) {
 
       let willBeAlive = false;
 
-      // Apply the Game of Life rules using nested conditionals
+      // Apply the Game of Life rules, using nested conditionals
       if (isCurrentlyAlive) {
         if (aliveCount === 2 || aliveCount === 3) {
           willBeAlive = true; // stays alive
