@@ -15,4 +15,5 @@ const initGrid = [
 const result = checkAllSquares(initGrid);
 console.log(result);
 
-getNextGeneration(currentGrid);
+const nextGen = getNextGeneration(initGrid);
+console.log(nextGen);
