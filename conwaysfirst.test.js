@@ -3,6 +3,7 @@ import {
   getCellMessage,
   checkSquare,
   getNextGeneration,
+  countAliveNeighbors,
 } from "./conwaysfirst";
 
 describe("getNeighbors", () => {
@@ -103,5 +104,22 @@ describe("getNextGeneration", () => {
       [true, true, true],
       [false, true, false],
     ]);
+  });
+});
+
+describe("countAliveNeighbors", () => {
+  test("counts 3 alive cells correctly", () => {
+    const neighbors = [true, false, true, true, false, false, false, false];
+    expect(countAliveNeighbors(neighbors)).toBe(3);
+  });
+
+  test("returns 0 if no neighbors are alive", () => {
+    const neighbors = [false, false, false, false];
+    expect(countAliveNeighbors(neighbors)).toBe(0);
+  });
+
+  test("returns 8 if all neighbors are alive", () => {
+    const neighbors = [true, true, true, true, true, true, true, true];
+    expect(countAliveNeighbors(neighbors)).toBe(8);
   });
 });
