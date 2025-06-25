@@ -14,25 +14,29 @@ export function getNeighbors(grid, currentY, currentX) {
 }
 
 export function getCellMessage(currentIsAlive, aliveNeighbors) {
-  if (
-    currentIsAlive &&
-    (aliveNeighbors.length === 2 || aliveNeighbors.length === 3)
-  ) {
+  const aliveCount = aliveNeighbors.length;
+
+  if (currentIsAlive && (aliveCount === 2 || aliveCount === 3)) {
     return "survived!";
-  } else if (!currentIsAlive && aliveNeighbors.length === 3) {
-    return "Bring to Life";
-  } else if (
-    currentIsAlive &&
-    (aliveNeighbors.length === 0 || aliveNeighbors.length === 1)
-  ) {
-    return "died of lonliness";
-  } else if (currentIsAlive && aliveNeighbors.length > 3) {
-    return "died of overpopulation";
-  } else if (!currentIsAlive && aliveNeighbors.length < 3) {
-    return "Stays Dead";
-  } else {
-    return "Oops";
   }
+
+  if (!currentIsAlive && aliveCount === 3) {
+    return "Bring to Life";
+  }
+
+  if (currentIsAlive && (aliveCount === 0 || aliveCount === 1)) {
+    return "died of lonliness";
+  }
+
+  if (currentIsAlive && aliveCount > 3) {
+    return "died of overpopulation";
+  }
+
+  if (!currentIsAlive && aliveCount < 3) {
+    return "Stays Dead";
+  }
+
+  return "Oops";
 }
 
 export function checkSquare(grid, initY, initX) {
