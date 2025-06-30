@@ -14,25 +14,29 @@ export function getNeighbors(grid, currentY, currentX) {
 }
 
 export function getCellMessage(currentIsAlive, aliveNeighbors) {
-  if (
-    currentIsAlive &&
-    (aliveNeighbors.length === 2 || aliveNeighbors.length === 3)
-  ) {
+  const aliveCount = aliveNeighbors.length;
+
+  if (currentIsAlive && (aliveCount === 2 || aliveCount === 3)) {
     return "survived!";
-  } else if (!currentIsAlive && aliveNeighbors.length === 3) {
-    return "Bring to Life";
-  } else if (
-    currentIsAlive &&
-    (aliveNeighbors.length === 0 || aliveNeighbors.length === 1)
-  ) {
-    return "died of lonliness";
-  } else if (currentIsAlive && aliveNeighbors.length > 3) {
-    return "died of overpopulation";
-  } else if (!currentIsAlive && aliveNeighbors.length < 3) {
-    return "Stays Dead";
-  } else {
-    return "Oops";
   }
+
+  if (!currentIsAlive && aliveCount === 3) {
+    return "Bring to Life";
+  }
+
+  if (currentIsAlive && (aliveCount === 0 || aliveCount === 1)) {
+    return "died of lonliness";
+  }
+
+  if (currentIsAlive && aliveCount > 3) {
+    return "died of overpopulation";
+  }
+
+  if (!currentIsAlive && aliveCount < 3) {
+    return "Stays Dead";
+  }
+
+  return "Oops";
 }
 
 export function checkSquare(grid, initY, initX) {
@@ -61,43 +65,40 @@ export function checkAllSquares(initGrid) {
 export function getNextGeneration(currentGrid) {
   const updatedGrid = [];
 
-  // Loop through each row
-  for (let y = 0; y < currentGrid.length; y++) {
+
+  for (let row = 0; row < currentGrid.length; row++) {
     const newRow = [];
-
-    // Loop through each column in the current row
-    for (let x = 0; x < currentGrid[0].length; x++) {
-      const isCurrentlyAlive = currentGrid[y][x];
-
-      // Get all neighboring cells
-      const neighbors = getNeighbors(currentGrid, y, x);
-
-      // Count how many neighbors are alive using a nested loop
-      let aliveCount = 0;
-      for (let i = 0; i < neighbors.length; i++) {
-        if (neighbors[i] === true) {
-          aliveCount += 1;
-        }
-      }
+    for (let col = 0; col < currentGrid[0].length; col++) {
+      const isCurrentlyAlive = currentGrid[row][col];
+      const neighbors = getNeighbors(currentGrid, row, col);
+      const aliveCount = countAliveNeighbors(neighbors); // <-- clear and readable
 
       let willBeAlive = false;
-
-      // Apply the Game of Life rules using nested conditionals
       if (isCurrentlyAlive) {
         if (aliveCount === 2 || aliveCount === 3) {
-          willBeAlive = true; // stays alive
+          willBeAlive = true;
         }
       } else {
         if (aliveCount === 3) {
-          willBeAlive = true; // comes to life
+          willBeAlive = true;
         }
       }
 
       newRow.push(willBeAlive);
     }
-
     updatedGrid.push(newRow);
   }
-
   return updatedGrid;
+}
+
+export function countAliveNeighbors(neighbors) {
+  let count = 0;
+  for (let i = 0; i < neighbors.length; i++) {
+    if (neighbors[i]) {
+      count++;
+    }
+  }
+  return count;
+  // replaced the for loop in the getNextGeneration with a function for testability
+
 }
