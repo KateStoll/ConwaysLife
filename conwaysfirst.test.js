@@ -4,6 +4,7 @@ import {
   checkSquare,
   getNextGeneration,
   countAliveNeighbors,
+
 } from "./conwaysfirst";
 
 describe("getNeighbors", () => {
@@ -123,3 +124,4 @@ describe("countAliveNeighbors", () => {
     expect(countAliveNeighbors(neighbors)).toBe(8);
   });
 });
+

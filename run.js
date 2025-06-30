@@ -17,3 +17,4 @@ console.log(result);
 
 const nextGen = getNextGeneration(initGrid);
 console.log(nextGen);
+
