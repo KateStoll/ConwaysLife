@@ -65,13 +65,12 @@ export function checkAllSquares(initGrid) {
 export function getNextGeneration(currentGrid) {
   const updatedGrid = [];
 
-
   for (let row = 0; row < currentGrid.length; row++) {
     const newRow = [];
     for (let col = 0; col < currentGrid[0].length; col++) {
       const isCurrentlyAlive = currentGrid[row][col];
       const neighbors = getNeighbors(currentGrid, row, col);
-      const aliveCount = countAliveNeighbors(neighbors); // <-- clear and readable
+      const aliveCount = countAliveNeighbors(neighbors);
 
       let willBeAlive = false;
       if (isCurrentlyAlive) {
@@ -99,6 +98,4 @@ export function countAliveNeighbors(neighbors) {
     }
   }
   return count;
-  // replaced the for loop in the getNextGeneration with a function for testability
-
 }
