@@ -43,7 +43,8 @@ export function checkSquare(grid, initY, initX) {
   const neighbors = getNeighbors(grid, initY, initX);
   const current = grid[initY][initX];
 
-  const aliveNeighbors = neighbors.filter((value) => value);
+  const aliveCount = countAliveNeighbors(neighbors);
+  const aliveNeighbors = new Array(aliveCount).fill(true);
 
   const output = getCellMessage(current, aliveNeighbors);
   return output;
